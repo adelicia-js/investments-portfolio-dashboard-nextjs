@@ -76,18 +76,19 @@ export default function Home() {
               </h1>
               <button
                 onClick={() => setShowAddModal(true)}
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors flex items-center"
+                className="px-3 md:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-200 hover:shadow-lg flex items-center text-sm md:text-base"
               >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 md:w-5 md:h-5 mr-1.5 md:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                 </svg>
-                Add Stock
+                <span className="hidden sm:inline">Add Stock</span>
+                <span className="sm:hidden">Add</span>
               </button>
             </div>
           </div>
         </header>
 
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
           <EmptyPortfolio onAddStock={() => setShowAddModal(true)} />
         </main>
 
@@ -103,14 +104,14 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <header className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center py-4 sm:py-0 sm:h-16 gap-3 sm:gap-0">
             <div className="flex items-center">
               <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
                 Portfolio Dashboard
               </h1>
-              <div className="flex items-center gap-2 ml-4">
-                <div className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full flex items-center">
+              <div className="hidden md:flex items-center gap-3 ml-6">
+                <div className="px-3 py-1.5 bg-green-100 text-green-800 text-xs font-medium rounded-full flex items-center">
                   {isRefreshing ? (
                     <>
                       <LoadingSpinner size="sm" className="mr-1" />
@@ -120,24 +121,25 @@ export default function Home() {
                     'Live Data'
                   )}
                 </div>
-                <div className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full">
+                <div className="px-3 py-1.5 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
                   Yahoo Finance + Google Finance
                 </div>
               </div>
             </div>
             
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 md:gap-4">
               <button
                 onClick={() => setShowAddModal(true)}
-                className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors flex items-center"
+                className="px-3 md:px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-200 hover:shadow-lg flex items-center text-sm md:text-base"
               >
-                <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 md:w-5 md:h-5 mr-1.5 md:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                 </svg>
-                Add Stock
+                <span className="hidden sm:inline">Add Stock</span>
+                <span className="sm:hidden">Add</span>
               </button>
 
-              <div className="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
+              <div className="hidden sm:flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
                 <button
                   onClick={() => setActiveView('table')}
                   className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
@@ -164,7 +166,7 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
         <div className="space-y-6">
           {error && (
             <ErrorAlert 
@@ -212,7 +214,7 @@ export default function Home() {
 
       <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-center items-center">
             <div className="text-sm text-gray-500 dark:text-gray-400">
               Auto-refresh every 15 seconds • Built with Next.js & TypeScript
             </div>

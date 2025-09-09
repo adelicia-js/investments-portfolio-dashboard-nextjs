@@ -128,10 +128,10 @@ export default function AddStockModal({ isOpen, onClose, onAddStock }: AddStockM
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6">
-          <div className="flex justify-between items-center mb-6">
+    <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+        <div className="p-4 sm:p-6">
+          <div className="flex justify-between items-center mb-4 sm:mb-6">
             <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
               Add Stock to Portfolio
             </h2>
@@ -145,7 +145,7 @@ export default function AddStockModal({ isOpen, onClose, onAddStock }: AddStockM
             </button>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Stock Selection
@@ -180,7 +180,7 @@ export default function AddStockModal({ isOpen, onClose, onAddStock }: AddStockM
                 <select
                   value={selectedStock}
                   onChange={(e) => setSelectedStock(e.target.value)}
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 ${
+                  className={`w-full px-3 py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 transition-all duration-150 ${
                     errors.selectedStock ? 'border-red-500' : 'border-gray-300'
                   }`}
                 >
@@ -208,7 +208,7 @@ export default function AddStockModal({ isOpen, onClose, onAddStock }: AddStockM
                     value={customStock.symbol}
                     onChange={(e) => setCustomStock({...customStock, symbol: e.target.value})}
                     placeholder="e.g., TATAMOTORS"
-                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 ${
+                    className={`w-full px-3 py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 transition-all duration-150 ${
                       errors.customSymbol ? 'border-red-500' : 'border-gray-300'
                     }`}
                   />
@@ -226,7 +226,7 @@ export default function AddStockModal({ isOpen, onClose, onAddStock }: AddStockM
                     value={customStock.name}
                     onChange={(e) => setCustomStock({...customStock, name: e.target.value})}
                     placeholder="e.g., Tata Motors Limited"
-                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 ${
+                    className={`w-full px-3 py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 transition-all duration-150 ${
                       errors.customName ? 'border-red-500' : 'border-gray-300'
                     }`}
                   />
@@ -244,7 +244,7 @@ export default function AddStockModal({ isOpen, onClose, onAddStock }: AddStockM
                     value={customStock.sector}
                     onChange={(e) => setCustomStock({...customStock, sector: e.target.value})}
                     placeholder="e.g., Automotive"
-                    className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 ${
+                    className={`w-full px-3 py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 transition-all duration-150 ${
                       errors.customSector ? 'border-red-500' : 'border-gray-300'
                     }`}
                   />
@@ -267,7 +267,7 @@ export default function AddStockModal({ isOpen, onClose, onAddStock }: AddStockM
                   value={purchasePrice}
                   onChange={(e) => setPurchasePrice(e.target.value)}
                   placeholder="0.00"
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 ${
+                  className={`w-full px-3 py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 transition-all duration-150 ${
                     errors.purchasePrice ? 'border-red-500' : 'border-gray-300'
                   }`}
                 />
@@ -286,7 +286,7 @@ export default function AddStockModal({ isOpen, onClose, onAddStock }: AddStockM
                   value={quantity}
                   onChange={(e) => setQuantity(e.target.value)}
                   placeholder="0"
-                  className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 ${
+                  className={`w-full px-3 py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 transition-all duration-150 ${
                     errors.quantity ? 'border-red-500' : 'border-gray-300'
                   }`}
                 />
@@ -303,7 +303,7 @@ export default function AddStockModal({ isOpen, onClose, onAddStock }: AddStockM
               <select
                 value={exchange}
                 onChange={(e) => setExchange(e.target.value as 'NSE' | 'BSE')}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+                className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 transition-all duration-150"
               >
                 <option value="NSE">NSE (National Stock Exchange)</option>
                 <option value="BSE">BSE (Bombay Stock Exchange)</option>
@@ -311,7 +311,7 @@ export default function AddStockModal({ isOpen, onClose, onAddStock }: AddStockM
             </div>
 
             {purchasePrice && quantity && (
-              <div className="bg-gray-50 dark:bg-gray-700 p-3 rounded-md">
+              <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-gray-700 dark:to-gray-750 p-3 rounded-lg border border-blue-200 dark:border-gray-600">
                 <p className="text-sm text-gray-600 dark:text-gray-300">
                   Total Investment: <span className="font-semibold">₹{(parseFloat(purchasePrice || '0') * parseInt(quantity || '0')).toLocaleString()}</span>
                 </p>
@@ -319,7 +319,7 @@ export default function AddStockModal({ isOpen, onClose, onAddStock }: AddStockM
             )}
 
             {errors.submit && (
-              <div className="bg-red-50 border border-red-200 rounded-md p-3">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-3">
                 <p className="text-red-600 text-sm">{errors.submit}</p>
               </div>
             )}
@@ -328,7 +328,7 @@ export default function AddStockModal({ isOpen, onClose, onAddStock }: AddStockM
               <button
                 type="button"
                 onClick={handleClose}
-                className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
+                className="flex-1 px-4 py-2.5 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 transition-all duration-150 hover:shadow-md"
                 disabled={isSubmitting}
               >
                 Cancel
@@ -336,7 +336,7 @@ export default function AddStockModal({ isOpen, onClose, onAddStock }: AddStockM
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-400 flex items-center justify-center"
+                className="flex-1 px-4 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-700 hover:to-blue-800 disabled:from-gray-400 disabled:to-gray-400 flex items-center justify-center transition-all duration-150 hover:shadow-lg"
               >
                 {isSubmitting ? (
                   <>

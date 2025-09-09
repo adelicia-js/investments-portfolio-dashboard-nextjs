@@ -30,9 +30,11 @@ const PortfolioTable = React.memo(function PortfolioTable({ portfolio, loading, 
       columnHelper.accessor('particulars', {
         header: 'Particulars',
         cell: (info) => (
-          <div className="font-medium text-gray-900 dark:text-gray-100">
-            {info.getValue()}
-            <div className="text-sm text-gray-500 dark:text-gray-400">
+          <div>
+            <div className="font-medium text-gray-900 dark:text-gray-100">
+              {info.getValue()}
+            </div>
+            <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
               {info.row.original.sector}
             </div>
           </div>
@@ -57,7 +59,7 @@ const PortfolioTable = React.memo(function PortfolioTable({ portfolio, loading, 
       columnHelper.accessor('exchange', {
         header: 'NSE/BSE',
         cell: (info) => (
-          <span className="px-2 py-1 text-xs font-semibold bg-blue-100 text-blue-800 rounded-full">
+          <span className="px-2.5 py-1 text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 rounded-full">
             {info.getValue()}
           </span>
         ),
@@ -148,19 +150,19 @@ const PortfolioTable = React.memo(function PortfolioTable({ portfolio, loading, 
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
-      <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-          Portfolio Dashboard
+    <div className="bg-white dark:bg-gray-800 shadow-lg rounded-xl overflow-hidden">
+      <div className="px-4 sm:px-6 py-4 sm:py-5 border-b border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0">
+        <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">
+          Portfolio Holdings
         </h2>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3 sm:gap-4">
           <div className="text-sm text-gray-500 dark:text-gray-400">
             Last updated: {portfolio.lastUpdated.toLocaleTimeString()}
           </div>
           <button
             onClick={onRefresh}
             disabled={loading}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:bg-gray-400 transition-colors flex items-center gap-2"
+            className="px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 transition-all duration-200 hover:shadow-lg flex items-center gap-2 text-sm sm:text-base"
           >
             {loading ? (
               <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full"></div>
@@ -174,22 +176,22 @@ const PortfolioTable = React.memo(function PortfolioTable({ portfolio, loading, 
         </div>
       </div>
 
-      <div className="px-6 py-4 bg-gray-50 dark:bg-gray-700 grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="text-center">
-          <div className="text-sm text-gray-500 dark:text-gray-400">Total Investment</div>
-          <div className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+      <div className="px-4 sm:px-6 py-5 bg-gradient-to-r from-gray-100 to-gray-500 dark:from-gray-700 dark:to-gray-750 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+        <div className="text-center sm:text-left">
+          <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-1">Total Investment</div>
+          <div className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">
             ₹{portfolio.totalInvestment.toLocaleString()}
           </div>
         </div>
         <div className="text-center">
-          <div className="text-sm text-gray-500 dark:text-gray-400">Present Value</div>
-          <div className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+          <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-1">Present Value</div>
+          <div className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100">
             ₹{portfolio.totalPresentValue.toLocaleString()}
           </div>
         </div>
-        <div className="text-center">
-          <div className="text-sm text-gray-500 dark:text-gray-400">Total Gain/Loss</div>
-          <div className={`text-lg font-semibold ${
+        <div className="text-center sm:text-right">
+          <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-1">Total Gain/Loss</div>
+          <div className={`text-xl sm:text-2xl font-bold ${
             portfolio.totalGainLoss >= 0 
               ? 'text-green-600 dark:text-green-400' 
               : 'text-red-600 dark:text-red-400'
@@ -198,8 +200,65 @@ const PortfolioTable = React.memo(function PortfolioTable({ portfolio, loading, 
           </div>
         </div>
       </div>
-      {/* Table */}
-      <div className="overflow-x-auto">
+      {/* Mobile Card View */}
+      <div className="sm:hidden px-4 py-4 space-y-3">
+        {portfolio.stocks.map((stock) => (
+          <div key={stock.id} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 space-y-3">
+            <div className="flex justify-between items-start">
+              <div>
+                <div className="font-semibold text-gray-900 dark:text-gray-100">{stock.particulars}</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">{stock.sector}</div>
+              </div>
+              <span className="px-2 py-1 text-xs font-semibold bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 rounded-full">
+                {stock.exchange}
+              </span>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-3 text-sm">
+              <div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">Purchase Price</div>
+                <div className="font-medium">₹{stock.purchasePrice.toFixed(2)}</div>
+              </div>
+              <div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">CMP</div>
+                <div className="font-semibold text-blue-600 dark:text-blue-400">₹{stock.cmp.toFixed(2)}</div>
+              </div>
+              <div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">Quantity</div>
+                <div className="font-medium">{stock.quantity.toLocaleString()}</div>
+              </div>
+              <div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">Gain/Loss</div>
+                <div className={`font-semibold ${stock.gainLoss >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+                  {stock.gainLoss >= 0 ? '+' : ''}₹{stock.gainLoss.toLocaleString()}
+                </div>
+              </div>
+            </div>
+            
+            <div className="pt-2 border-t border-gray-200 dark:border-gray-600 flex justify-between items-center">
+              <div>
+                <div className="text-xs text-gray-500 dark:text-gray-400">Present Value</div>
+                <div className="font-semibold text-gray-900 dark:text-gray-100">₹{stock.presentValue.toLocaleString()}</div>
+              </div>
+              {onRemoveStock && (
+                <button
+                  onClick={() => {
+                    if (window.confirm(`Are you sure you want to remove ${stock.particulars} from your portfolio?`)) {
+                      onRemoveStock(stock.id);
+                    }
+                  }}
+                  className="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-200 text-sm font-medium"
+                >
+                  Remove
+                </button>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop Table */}
+      <div className="hidden sm:block overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
           <thead className="bg-gray-50 dark:bg-gray-700">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -207,7 +266,7 @@ const PortfolioTable = React.memo(function PortfolioTable({ portfolio, loading, 
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600"
+                    className="px-3 sm:px-6 py-3 sm:py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-150"
                     onClick={header.column.getToggleSortingHandler()}
                   >
                     <div className="flex items-center gap-2">
@@ -235,9 +294,9 @@ const PortfolioTable = React.memo(function PortfolioTable({ portfolio, loading, 
               </tr>
             ) : (
               table.getRowModel().rows.map((row) => (
-                <tr key={row.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                <tr key={row.id} className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-150">
                   {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                    <td key={cell.id} className="px-3 sm:px-6 py-3 sm:py-5 whitespace-nowrap text-xs sm:text-sm text-gray-900 dark:text-gray-100">
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </td>
                   ))}

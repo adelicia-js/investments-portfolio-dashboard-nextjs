@@ -18,10 +18,10 @@ const SectorCard = React.memo(function SectorCard({ sector, isExpanded, onToggle
   const isGain = sector.totalGainLoss >= 0;
 
   return (
-    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg shadow-sm">
+    <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-200">
       <button
         onClick={onToggle}
-        className="w-full px-6 py-4 text-left hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 transition-colors"
+        className="w-full px-4 sm:px-6 py-4 sm:py-5 text-left hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:bg-gray-50 dark:focus:bg-gray-700 transition-colors duration-150"
       >
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-3">
@@ -31,23 +31,23 @@ const SectorCard = React.memo(function SectorCard({ sector, isExpanded, onToggle
               sector.sector === 'Energy' ? 'bg-orange-500' :
               'bg-purple-500'
             }`}></div>
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100">
               {sector.sector}
             </h3>
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              ({sector.stocks.length} stocks)
+            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+              ({sector.stocks.length} {sector.stocks.length === 1 ? 'stock' : 'stocks'})
             </span>
           </div>
           <div className="flex items-center gap-4">
             <div className="text-right">
-              <div className={`text-lg font-semibold ${
+              <div className={`text-base sm:text-lg font-bold ${
                 isGain 
                   ? 'text-green-600 dark:text-green-400' 
                   : 'text-red-600 dark:text-red-400'
               }`}>
                 {isGain ? '+' : ''}₹{sector.totalGainLoss.toLocaleString()}
               </div>
-              <div className={`text-sm ${
+              <div className={`text-xs sm:text-sm ${
                 isGain 
                   ? 'text-green-600 dark:text-green-400' 
                   : 'text-red-600 dark:text-red-400'
@@ -69,22 +69,22 @@ const SectorCard = React.memo(function SectorCard({ sector, isExpanded, onToggle
         </div>
       </button>
 
-      <div className="px-6 pb-4 grid grid-cols-3 gap-4">
+      <div className="px-4 sm:px-6 pb-4 sm:pb-5 grid grid-cols-3 gap-2 sm:gap-4">
         <div className="text-center">
-          <div className="text-sm text-gray-500 dark:text-gray-400">Investment</div>
-          <div className="text-base font-medium text-gray-900 dark:text-gray-100">
+          <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Investment</div>
+          <div className="text-sm sm:text-base font-semibold text-gray-900 dark:text-gray-100">
             ₹{sector.totalInvestment.toLocaleString()}
           </div>
         </div>
         <div className="text-center">
-          <div className="text-sm text-gray-500 dark:text-gray-400">Present Value</div>
-          <div className="text-base font-medium text-gray-900 dark:text-gray-100">
+          <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Present Value</div>
+          <div className="text-sm sm:text-base font-semibold text-gray-900 dark:text-gray-100">
             ₹{sector.totalPresentValue.toLocaleString()}
           </div>
         </div>
         <div className="text-center">
-          <div className="text-sm text-gray-500 dark:text-gray-400">Return</div>
-          <div className={`text-base font-medium ${
+          <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Return</div>
+          <div className={`text-sm sm:text-base font-semibold ${
             isGain 
               ? 'text-green-600 dark:text-green-400' 
               : 'text-red-600 dark:text-red-400'
@@ -182,7 +182,7 @@ const SectorView = React.memo(function SectorView({ sectors }: SectorViewProps) 
 
   return (
     <div className="space-y-4">
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+      <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 sm:mb-6">
         Sector Breakdown
       </h2>
       
